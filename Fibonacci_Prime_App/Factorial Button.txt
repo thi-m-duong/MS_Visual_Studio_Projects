@@ -1,0 +1,26 @@
+    Private Sub factorialButton_Click(sender As Object, e As EventArgs) Handles factorialButton.Click
+
+        'clear listbox
+        resultListBox.Items.Clear()
+
+        'declare variables for start number and end number
+        Dim startNum As Double
+        Dim endNum As Double
+        Dim factorial As Double = 1
+
+        Double.TryParse(startTextBox.Text, startNum)
+        Double.TryParse(endTextBox.Text, endNum)
+
+        ' to calculate the factorial
+        If startNum <= 10 Then
+
+            For count As Double = 1 To startNum
+                factorial *= count
+            Next count
+            resultListBox.Items.Add(factorial.ToString)
+        Else
+            MessageBox.Show("Can not enter number over 10. Please re-enter valid number.", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+
+
+    End Sub

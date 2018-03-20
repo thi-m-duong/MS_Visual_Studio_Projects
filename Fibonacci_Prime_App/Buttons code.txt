@@ -1,0 +1,298 @@
+ Private Sub multiplicationButton_Click(sender As Object, e As EventArgs) Handles multiplicationButton.Click
+        'clear listbox
+        resultListBox.Items.Clear()
+
+        'save space
+        Dim startNum As Integer
+        Dim multiplication As Integer
+
+
+
+        'get value
+        Integer.TryParse(startTextBox.Text, startNum)
+
+
+        'display table
+        For count As Integer = 1 To 12 Step 1
+            multiplication = startNum * count
+            resultListBox.Items.Add(startNum.ToString & " * " & count.ToString & " = " & multiplication.ToString)
+
+        Next
+
+
+
+        'set focus and select all
+        startTextBox.Focus()
+        startTextBox.SelectAll()
+
+    End Sub
+
+    Private Sub sumButton_Click(sender As Object, e As EventArgs) Handles sumButton.Click
+
+        'clear listbox
+        resultListBox.Items.Clear()
+
+        'declare variables for start number and end number
+        Dim startNum As Double
+        Dim endNum As Double
+        Dim sum As Double
+
+        Double.TryParse(startTextBox.Text, startNum)
+        Double.TryParse(endTextBox.Text, endNum)
+
+
+        'calculate and display the sum of the 2 numbers
+        sum = startNum + endNum
+
+        resultListBox.Items.Add(sum.ToString)
+
+        startTextBox.Focus()
+
+    End Sub
+
+    Private Sub differenceButton_Click(sender As Object, e As EventArgs) Handles differenceButton.Click
+
+        'clear listbox
+        resultListBox.Items.Clear()
+
+        'declare variables for start number and end number
+        Dim startNum As Double
+        Dim endNum As Double
+        Dim difference As Double
+
+
+        Double.TryParse(startTextBox.Text, startNum)
+        Double.TryParse(endTextBox.Text, endNum)
+
+
+        'calculate and display the difference of the 2 numbers
+        difference = startNum - endNum
+
+        resultListBox.Items.Add(difference.ToString)
+
+        startTextBox.Focus()
+
+
+
+    End Sub
+
+    Private Sub productButton_Click(sender As Object, e As EventArgs) Handles productButton.Click
+
+        'clear listbox
+        resultListBox.Items.Clear()
+
+        'declare variables for start number and end number
+        Dim startNum As Double
+        Dim endNum As Double
+        Dim product As Double
+
+        Double.TryParse(startTextBox.Text, startNum)
+        Double.TryParse(endTextBox.Text, endNum)
+
+
+        'calculate and display the product of the 2 numbers
+        product = startNum * endNum
+
+        resultListBox.Items.Add(product.ToString)
+
+        startTextBox.Focus()
+
+
+    End Sub
+
+    Private Sub quotientButton_Click(sender As Object, e As EventArgs) Handles quotientButton.Click
+
+
+        'clear listbox
+        resultListBox.Items.Clear()
+
+        'declare variables for start number and end number
+        Dim startNum As Double
+        Dim endNum As Double
+        Dim quotient As Double
+
+        'calculate and display the quotient of the 2 numbers, end number can not be "0"
+        Double.TryParse(startTextBox.Text, startNum)
+
+        If Not Double.TryParse(endTextBox.Text, endNum) OrElse endNum = 0 Then
+            MessageBox.Show("Can not enter zero for the end number, please enter valid number.", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Else
+            quotient = startNum / endNum
+            resultListBox.Items.Add(quotient.ToString)
+        End If
+
+
+
+        startTextBox.Focus()
+
+    End Sub
+
+    Private Sub averageButton_Click(sender As Object, e As EventArgs) Handles averageButton.Click
+
+        'clear listbox
+        resultListBox.Items.Clear()
+
+        'declare variables for start number and end number
+        Dim startNum As Double
+        Dim endNum As Double
+        Dim average As Double
+
+        Double.TryParse(startTextBox.Text, startNum)
+        Double.TryParse(endTextBox.Text, endNum)
+
+
+        'calculate and display the sum of the 2 numbers
+        average = (startNum + endNum) / 2
+
+        resultListBox.Items.Add(average.ToString)
+
+        startTextBox.Focus()
+
+
+    End Sub
+
+    Private Sub minButton_Click(sender As Object, e As EventArgs) Handles minButton.Click
+
+
+        'clear listbox
+        resultListBox.Items.Clear()
+
+        'declare variables for start number and end number
+        Dim startNum As Double
+        Dim endNum As Double
+
+
+        Double.TryParse(startTextBox.Text, startNum)
+        Double.TryParse(endTextBox.Text, endNum)
+
+
+        'find min of the 2 numbers
+        If startNum < endNum Then
+            resultListBox.Items.Add(startNum.ToString)
+        Else
+            resultListBox.Items.Add(endNum.ToString)
+        End If
+
+
+
+
+        startTextBox.Focus()
+
+    End Sub
+
+
+    Private Sub maxButton_Click(sender As Object, e As EventArgs) Handles maxButton.Click
+
+        'clear listbox
+        resultListBox.Items.Clear()
+
+        'declare variables for start number and end number
+        Dim startNum As Double
+        Dim endNum As Double
+
+        Double.TryParse(startTextBox.Text, startNum)
+        Double.TryParse(endTextBox.Text, endNum)
+
+
+
+        'find max of the 2 numbers
+        If startNum > endNum Then
+            resultListBox.Items.Add(startNum.ToString)
+        Else
+            resultListBox.Items.Add(endNum.ToString)
+        End If
+
+        startTextBox.Focus()
+
+
+    End Sub
+
+    Private Sub startTextBox_KeyPress(sender As Object, e As KeyPressEventArgs) Handles startTextBox.KeyPress
+
+        'allows only numbers and backspace key
+        If (e.KeyChar < "0" OrElse e.KeyChar > "9") AndAlso
+            e.KeyChar <> ControlChars.Back Then
+            e.Handled = True
+        End If
+
+
+
+
+    End Sub
+
+    Private Sub endTextBox_KeyPress(sender As Object, e As KeyPressEventArgs) Handles endTextBox.KeyPress
+
+        'allows only numbers and backspace key
+        If (e.KeyChar < "0" OrElse e.KeyChar > "9") AndAlso
+            e.KeyChar <> ControlChars.Back Then
+            e.Handled = True
+        End If
+
+
+
+    End Sub
+
+    Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        'start focus in Start Number textbox
+        startTextBox.Focus()
+
+
+
+    End Sub
+
+
+
+    Private Sub startTextBox_Click(sender As Object, e As EventArgs) Handles startTextBox.Click
+        'selects all and clears result listbox
+        startTextBox.SelectAll()
+
+
+
+    End Sub
+
+    Private Sub startTextBox_TextChanged(sender As Object, e As EventArgs) Handles startTextBox.TextChanged
+        'selects all and clears result listbox
+        'startTextBox.SelectAll()
+        resultListBox.Items.Clear()
+        endTextBox.Clear()
+
+
+
+
+
+    End Sub
+
+    Private Sub startTextBox_Enter(sender As Object, e As EventArgs) Handles startTextBox.Enter
+        'selects all and clears result listbox and input textboxes
+        startTextBox.SelectAll()
+
+
+
+    End Sub
+
+    Private Sub endTextBox_Click(sender As Object, e As EventArgs) Handles endTextBox.Click
+
+        'selects all and clears result listbox
+        endTextBox.SelectAll()
+
+
+    End Sub
+
+    Private Sub endTextBox_Enter(sender As Object, e As EventArgs) Handles endTextBox.Enter
+        'selects all and clears result listbox
+        endTextBox.SelectAll()
+
+
+    End Sub
+
+    Private Sub endTextBox_TextChanged(sender As Object, e As EventArgs) Handles endTextBox.TextChanged
+
+        'selects all and clears result listbox
+        resultListBox.Items.Clear()
+
+
+
+
+    End Sub
+End Class
